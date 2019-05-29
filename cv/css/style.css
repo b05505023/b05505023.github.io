@@ -2,7 +2,9 @@ html, body{
 	margin:0;
 	background:	#fff;
 	font-family: 'Open Sans', sans-serif;
+	cursor:url("http://ninihouse520.myweb.hinet.net/cursor/cursor0817.cur");
 }
+
 h4, h5, h6,
 h1, h2, h3 {
 margin: 0;
@@ -32,6 +34,7 @@ body a{
 
 }
 body a:hover{
+	cursor:url("http://ninihouse520.myweb.hinet.net/cursor/cursor0817.cur");
 	text-decoration:none;
 }
 /*-- to-top --*/
@@ -1758,5 +1761,7 @@ h3.tittle:after, h3.tittle:before {
 		width: 50%;
 		margin-top: 8px;
 	}
+	
 }
+
 
