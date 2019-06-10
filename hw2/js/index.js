@@ -103,7 +103,38 @@ $(document).ready(function() {
         })
 
         
-
+        $('#query').on('click', function(){
+            $.get('https://js.kchen.club/B05505023/query', function(response) {
+                if (response) {
+                    // 伺服器有回傳資料
+                    if (response.result) {
+                        $('#product-list').empty();
+                        // 資料庫有回傳資料
+                        items = response.items
+    
+                        // for (var i = 0; i < items.length; i++) {
+                        //     newItem(items[i])
+                        // }
+    
+                        // 加了分頁效果，預設顯示第一頁
+                        showItems(1)
+    
+                        // 顯示分頁和設定分頁的函式
+                        $('#page').show()
+                        newPage(items.length)
+    
+                    } else {
+                        $('#message').text('查無相關資料')
+                        $('#dialog').modal('show')
+                    }
+                } else {
+                    $('#message').text('伺服器出錯')
+                    $('#dialog').modal('show')
+                }
+    
+                console.log(response)
+            }, "json")
+        })
         $('#add').on('click', function() {
             
 
