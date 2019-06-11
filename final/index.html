@@ -288,6 +288,11 @@
                     el.style.left = 0;
                 el.style.left = parseInt(el.style.left) + 6 + 'px';
                 el.style.top = 200;
+                if (shots == 9) {
+
+                    var modal2 = document.getElementById("myModal3");
+                    modal2.style.display = "block";
+                }
 
 
             } else if (score >= 3 && score < 6) {
@@ -322,6 +327,11 @@
                     start = new Date().getTime();
                     end = new Date().getTime();
                 }
+                if (shots == 9) {
+
+                    var modal2 = document.getElementById("myModal3");
+                    modal2.style.display = "block";
+                }
             } else if (score >= 6 && score < 9) {
                 if (flag3 == 2) {
                     scoreboard()
@@ -352,7 +362,8 @@
                     start = new Date().getTime();
                     end = new Date().getTime();
                 }
-            } else if (score == 0) {
+
+            } else if (score == 9) {
 
                 var modal2 = document.getElementById("myModal2");
                 modal2.style.display = "block";
