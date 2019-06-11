@@ -1,0 +1,978 @@
+<html>
+
+<head>
+    <title>Space Shooter</title>
+    <style>
+        h1 {
+            font-size: 3em;
+            color: rgb(97, 96, 96);
+        }
+        
+        .y {
+            margin-left: 30%;
+        }
+        
+        .modal {
+            display: none;
+            /* Hidden by default */
+            position: fixed;
+            /* Stay in place */
+            z-index: 1;
+            /* Sit on top */
+            padding-top: 100px;
+            /* Location of the box */
+            left: 0;
+            top: 0;
+            width: 100%;
+            /* Full width */
+            height: 100%;
+            /* Full height */
+            overflow: auto;
+            /* Enable scroll if needed */
+            background-color: rgb(0, 0, 0);
+            /* Fallback color */
+            background-color: rgba(0, 0, 0, 0.4);
+            /* Black w/ opacity */
+        }
+        /* Modal Content */
+        
+        table {
+            background: white;
+        }
+        
+        .modal-content {
+            background-color: #fefefe;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 100%;
+            height: 300px;
+        }
+        
+        .modal-dialog {
+            background-color: bisque;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 300px;
+            height: 100px;
+        }
+        /* The Close Button */
+        
+        .close {
+            color: #aaaaaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        
+        .close:hover,
+        .close:focus {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        
+        #range {
+            position: absolute;
+            width: 100%;
+            height: 350px;
+            left: 0px;
+            top: 120px;
+            background: url(space.jpg);
+            cursor: crosshair;
+        }
+        
+        #img1 {
+            position: absolute;
+            border: none;
+            left: 0px;
+            top: 500px;
+            padding: 10px;
+        }
+        
+        #img2 {
+            position: absolute;
+            border: none;
+            left: 0px;
+            top: 500px;
+            padding: 10px;
+        }
+        
+        #img3 {
+            position: absolute;
+            border: none;
+            left: 0px;
+            top: 500px;
+            padding: 10px;
+        }
+        
+        #score {
+            font: 16px normal arial, verdana, sans-serif;
+            color: blue;
+            margin-top: 1%;
+            padding: 10px;
+        }
+        
+        .animated {
+            margin-left: 35%;
+            margin-top: 10%;
+        }
+        
+        .tb {
+            margin-left: 40%;
+        }
+        
+        .m2 {
+            width: 300px;
+            height: 300px;
+        }
+        
+        #su {
+            margin-left: 35%;
+        }
+        
+        body {
+            background-image: url("giphy.gif"), url("giphy1.gif"), url("giphy_s.gif"), url("giphy.gif"), url("giphy1.gif"), url("giphy_s.gif"), url("giphy.gif");
+            background-repeat: no-repeat, no-repeat, no-repeat;
+            background-position: 10% 20%, 10% 70%, 30% 70%, 50% 70%, 70% 70%, 90% 70%, 90% 20%;
+            background-size: 10%;
+            background-color: bisque
+        }
+        
+        .myButton {
+            -moz-box-shadow: inset 0px 1px 0px 0px #fff6af;
+            -webkit-box-shadow: inset 0px 1px 0px 0px #fff6af;
+            box-shadow: inset 0px 1px 0px 0px #fff6af;
+            background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #ffec64), color-stop(1, #ffab23));
+            background: -moz-linear-gradient(top, #ffec64 5%, #ffab23 100%);
+            background: -webkit-linear-gradient(top, #ffec64 5%, #ffab23 100%);
+            background: -o-linear-gradient(top, #ffec64 5%, #ffab23 100%);
+            background: -ms-linear-gradient(top, #ffec64 5%, #ffab23 100%);
+            background: linear-gradient(to bottom, #ffec64 5%, #ffab23 100%);
+            filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#ffec64', endColorstr='#ffab23', GradientType=0);
+            background-color: #ffec64;
+            -moz-border-radius: 6px;
+            -webkit-border-radius: 6px;
+            border-radius: 6px;
+            border: 1px solid #ffaa22;
+            display: inline-block;
+            cursor: pointer;
+            color: #333333;
+            font-family: Arial;
+            font-size: 15px;
+            font-weight: bold;
+            padding: 6px 24px;
+            text-decoration: none;
+            text-shadow: 0px 1px 0px #ffee66;
+        }
+        
+        .myButton2 {
+            -moz-box-shadow: inset 0px 1px 0px 0px #fff6af;
+            -webkit-box-shadow: inset 0px 1px 0px 0px #fff6af;
+            box-shadow: inset 0px 1px 0px 0px #fff6af;
+            background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #ffec64), color-stop(1, #ffab23));
+            background: -moz-linear-gradient(top, #ffec64 5%, #ffab23 100%);
+            background: -webkit-linear-gradient(top, #ffec64 5%, #ffab23 100%);
+            background: -o-linear-gradient(top, #ffec64 5%, #ffab23 100%);
+            background: -ms-linear-gradient(top, #ffec64 5%, #ffab23 100%);
+            background: linear-gradient(to bottom, #ffec64 5%, #ffab23 100%);
+            filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#ffec64', endColorstr='#ffab23', GradientType=0);
+            background-color: #ffec64;
+            -moz-border-radius: 6px;
+            -webkit-border-radius: 6px;
+            border-radius: 6px;
+            border: 1px solid #ffaa22;
+            display: inline-block;
+            cursor: pointer;
+            color: #333333;
+            font-family: Arial;
+            font-size: 15px;
+            font-weight: bold;
+            padding: 6px 24px;
+            text-decoration: none;
+            text-shadow: 0px 1px 0px #ffee66;
+            margin-left: 40%;
+        }
+        
+        .myButton:hover {
+            background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #ffab23), color-stop(1, #ffec64));
+            background: -moz-linear-gradient(top, #ffab23 5%, #ffec64 100%);
+            background: -webkit-linear-gradient(top, #ffab23 5%, #ffec64 100%);
+            background: -o-linear-gradient(top, #ffab23 5%, #ffec64 100%);
+            background: -ms-linear-gradient(top, #ffab23 5%, #ffec64 100%);
+            background: linear-gradient(to bottom, #ffab23 5%, #ffec64 100%);
+            filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#ffab23', endColorstr='#ffec64', GradientType=0);
+            background-color: #ffab23;
+        }
+        
+        .myButton:active {
+            position: relative;
+            top: 1px;
+        }
+    </style>
+    <script>
+        var timer1 = null;
+        var timer2 = null;
+        var el = null;
+        var score = 0; // 分数
+        var shots = 0; // 总共射击的次数
+        var on = 0;
+        var flag1 = 0;
+        var flag2 = 0;
+        var flag3 = 0;
+        var ran = 120
+        var ff = null;
+        start = new Date().getTime();
+        console.log(start)
+
+        function moveIt(x, y) {
+            // 图片动画
+
+            try {
+                if (shots >= 1) {
+                    var snowball = document.getElementById("theImage-1");
+                }
+            } catch (e) {;
+            }
+            try {
+                if (shots >= 2) {
+                    var snowball2 = document.getElementById("theImage-2");
+                }
+            } catch (e) {;
+            }
+            try {
+                if (shots >= 3) {
+                    var snowball3 = document.getElementById("theImage-3");
+                }
+            } catch (e) {;
+            }
+            try {
+                if (shots >= 4) {
+                    var snowball4 = document.getElementById("theImage-4");
+                }
+            } catch (e) {;
+            }
+            try {
+                if (shots >= 5) {
+                    var snowball5 = document.getElementById("theImage-5");
+                }
+            } catch (e) {;
+            }
+            try {
+                if (shots >= 6) {
+                    var snowball6 = document.getElementById("theImage-6");
+                }
+            } catch (e) {;
+            }
+            try {
+                if (shots >= 7) {
+                    var snowball7 = document.getElementById("theImage-7");
+                }
+            } catch (e) {;
+            }
+            try {
+                if (shots >= 8) {
+                    var snowball8 = document.getElementById("theImage-8");
+                }
+            } catch (e) {;
+            }
+            try {
+                if (shots >= 9) {
+                    var snowball9 = document.getElementById("theImage-9");
+                }
+            } catch (e) {;
+            }
+            if (score < 3) {
+                if (parseInt(el.style.left) > (screen.width - 50))
+                    el.style.left = 0;
+                el.style.left = parseInt(el.style.left) + 6 + 'px';
+                el.style.top = 200;
+
+
+            } else if (score >= 3 && score < 6) {
+                if (flag3 == 0) {
+
+
+                    scoreboard()
+                    alert("下一關");
+                    shots = 0;
+                    scoreboard()
+                    flag3 = 1;
+                }
+                if (parseInt(el.style.left) > (screen.width - 50))
+                    el.style.left = 0;
+                console.log(flag3)
+                tmp = parseInt(el.style.left)
+                el.style.left = parseInt(el.style.left) + 6 + 'px';
+                el.style.top = 200;
+                end = new Date().getTime();
+                if ((end - start) > 1000 && flag2 == 0) {
+                    setTimeout(function() {
+                        el.style.display = "none";
+                    }, 1000);
+                    flag2 = 1;
+                    start = new Date().getTime();
+                    end = new Date().getTime();
+                } else if ((end - start) > 1000 && flag2 == 1) {
+                    setTimeout(function() {
+                        el.style.display = "";
+                    }, 1000);
+                    flag2 = 0;
+                    start = new Date().getTime();
+                    end = new Date().getTime();
+                }
+            } else if (score >= 6 && score < 9) {
+                if (flag3 == 2) {
+                    scoreboard()
+                    alert("下一關");
+                    shots = 0;
+                    scoreboard()
+                    flag3 = 3;
+                    start = new Date().getTime();
+                }
+                if (parseInt(el.style.left) > (screen.width - 50))
+                    el.style.left = 0;
+                console.log(flag3)
+                el.style.left = parseInt(el.style.left) + 6 + 'px';
+                el.style.top = 200;
+                end = new Date().getTime();
+                if ((end - start) > 500 && flag2 == 0) {
+                    setTimeout(function() {
+                        el.style.display = "none";
+                    }, 500);
+                    flag2 = 1;
+                    start = new Date().getTime();
+                    end = new Date().getTime();
+                } else if ((end - start) > 500 && flag2 == 1) {
+                    setTimeout(function() {
+                        el.style.display = "";
+                    }, 500);
+                    flag2 = 0;
+                    start = new Date().getTime();
+                    end = new Date().getTime();
+                }
+            } else if (score == 0) {
+
+                var modal2 = document.getElementById("myModal2");
+                modal2.style.display = "block";
+            }
+            try {
+                if (flag3 == 1 || flag3 == 3) {
+                    document.getElementById("theImage1").style.display = "none"
+                }
+            } catch (e) {;
+            }
+            try {
+                if (flag3 == 1 || flag3 == 3) {
+                    document.getElementById("theImage2").style.display = "none"
+                }
+            } catch (e) {;
+            }
+            try {
+                if (flag3 == 1 || flag3 == 3) {
+                    document.getElementById("theImage3").style.display = "none"
+                }
+            } catch (e) {;
+            }
+            try {
+                if (flag3 == 1 || flag3 == 3) {
+                    document.getElementById("theImage4").style.display = "none"
+                }
+            } catch (e) {;
+            }
+            try {
+                if (flag3 == 1 || flag3 == 3) {
+                    document.getElementById("theImage5").style.display = "none"
+                }
+            } catch (e) {;
+            }
+            try {
+                if (flag3 == 1 || flag3 == 3) {
+                    document.getElementById("theImage6").style.display = "none"
+                }
+            } catch (e) {;
+            }
+            try {
+                if (flag3 == 1 || flag3 == 3) {
+                    document.getElementById("theImage7").style.display = "none"
+                }
+            } catch (e) {;
+            }
+            try {
+                if (flag3 == 1 || flag3 == 3) {
+                    document.getElementById("theImage8").style.display = "none"
+                }
+            } catch (e) {;
+            }
+            try {
+                if (flag3 == 1 || flag3 == 3) {
+                    document.getElementById("theImage9").style.display = "none"
+                }
+            } catch (e) {;
+            }
+            try {
+                if (flag3 == 1) {
+                    snowball.style.display = "none"
+                    snowball.id = "theImage1"
+                }
+                if (flag3 == 3) {
+                    snowball.style.display = "none"
+                    snowball.id = "theImage1"
+                } else if (shots >= 1) {
+                    //if (flag1==1)tmp=parseInt(snowball.style.top)-100;
+
+                    snowball.style.left = parseInt(el.style.left) + 50 + 'px';
+                    snowball.style.top = parseInt(el.style.top) + 20 + 'px';
+                    //flag1++;
+                    snowball.style.display = el.style.display;
+                }
+
+
+            } catch (e) {;
+            }
+            try {
+                if (flag3 == 1) {
+                    snowball2.style.display = "none"
+                    snowball2.id = "theImage2"
+                }
+                if (flag3 == 3) {
+                    snowball2.style.display = "none"
+                    snowball2.id = "theImage2"
+                } else if (shots >= 2) {
+                    snowball2.style.left = parseInt(el.style.left) + 50 + 'px';
+                    snowball2.style.top = parseInt(el.style.top) + 75 + 'px';
+                    snowball2.style.display = el.style.display;
+                }
+
+            } catch (e) {;
+            }
+            try {
+                if (flag3 == 1) {
+                    snowball3.style.display = "none"
+                    snowball3.id = "theImage3"
+                }
+                if (flag3 == 3) {
+                    snowball3.style.display = "none"
+                    snowball3.id = "theImage3"
+                } else if (shots >= 3) {
+                    snowball3.style.left = parseInt(el.style.left) + 50 + 'px';
+                    snowball3.style.top = parseInt(el.style.top) + 55 + 'px';
+                    snowball3.style.display = el.style.display;
+                }
+
+            } catch (e) {;
+            }
+            try {
+                if (flag3 == 1) {
+                    snowball4.style.display = "none"
+                    snowball4.id = "theImage4"
+                }
+                if (flag3 == 3) {
+                    snowball4.style.display = "none"
+                    snowball4.id = "theImage4"
+                }
+                if (shots >= 4) {
+                    snowball4.style.left = parseInt(el.style.left) + 50 + 'px';
+                    snowball4.style.top = parseInt(el.style.top) + 40 + 'px';
+                    snowball4.style.display = el.style.display;
+                }
+
+            } catch (e) {;
+            }
+            try {
+                if (flag3 == 1) {
+                    snowball5.style.display = "none"
+                    snowball5.id = "theImage5"
+                }
+                if (flag3 == 3) {
+                    snowball5.style.display = "none"
+                    snowball5.id = "theImage5"
+                }
+                if (shots >= 5) {
+                    snowball5.style.left = parseInt(el.style.left) + 50 + 'px';
+                    snowball5.style.top = parseInt(el.style.top) + 15 + 'px';
+                    snowball5.style.display = el.style.display;
+                }
+
+            } catch (e) {;
+            }
+            try {
+                if (flag3 == 1) {
+                    snowball6.style.display = "none"
+                    snowball6.id = "theImage6"
+                }
+                if (flag3 == 3) {
+                    snowball6.style.display = "none"
+                    snowball6.id = "theImage6"
+                }
+                if (shots >= 6) {
+                    snowball6.style.left = parseInt(el.style.left) + 50 + 'px';
+                    snowball6.style.top = parseInt(el.style.top) + 90 + 'px';
+                    snowball6.style.display = el.style.display;
+                }
+
+            } catch (e) {;
+            }
+            try {
+                if (flag3 == 1) {
+                    snowball7.style.display = "none"
+                    snowball7.id = "theImage7"
+                }
+                if (flag3 == 3) {
+                    snowball7.style.display = "none"
+                    snowball7.id = "theImage7"
+                }
+                if (shots >= 7) {
+                    snowball7.style.left = parseInt(el.style.left) + 50 + 'px';
+                    snowball7.style.top = parseInt(el.style.top) + 70 + 'px';
+                    snowball7.style.display = el.style.display;
+                }
+
+            } catch (e) {;
+            }
+            try {
+                if (flag3 == 1) {
+                    snowball8.style.display = "none"
+                    snowball8.id = "theImage8"
+                }
+                if (flag3 == 3) {
+                    snowball8.style.display = "none"
+                    snowball8.id = "theImage8"
+                }
+                if (shots >= 8) {
+                    snowball8.style.left = parseInt(el.style.left) + 50 + 'px';
+                    snowball8.style.top = parseInt(el.style.top) + 50 + 'px';
+                    snowball8.style.display = el.style.display;
+                }
+
+            } catch (e) {;
+            }
+            try {
+                if (flag3 == 1) {
+                    snowball9.style.display = "none"
+                    snowball9.id = "theImage3"
+                }
+                if (flag3 == 3) {
+                    snowball9.style.display = "none"
+                    snowball9.id = "theImage9"
+                }
+                if (shots >= 9) {
+                    snowball9.style.left = parseInt(el.style.left) + 50 + 'px';
+                    snowball9.style.top = parseInt(el.style.top) + 60 + 'px';
+                    snowball9.style.display = el.style.display;
+                }
+
+            } catch (e) {;
+            }
+            if (flag3 == 1) {
+                flag3 = 2;
+                var cc = document.getElementById("c1");
+                cc.style.display = '';
+                var cc = document.getElementById("c2");
+                cc.style.display = '';
+                var cc = document.getElementById("c3");
+                cc.style.display = '';
+                var cc = document.getElementById("c4");
+                cc.style.display = '';
+                var cc = document.getElementById("c5");
+                cc.style.display = '';
+                var cc = document.getElementById("c6");
+                cc.style.display = '';
+                var cc = document.getElementById("c7");
+                cc.style.display = '';
+                var cc = document.getElementById("c8");
+                cc.style.display = '';
+                var cc = document.getElementById("c9");
+                cc.style.display = '';
+            }
+
+            if (flag3 == 3) {
+                flag3 = 4;
+                var cc = document.getElementById("c1");
+                cc.style.display = '';
+                var cc = document.getElementById("c2");
+                cc.style.display = '';
+                var cc = document.getElementById("c3");
+                cc.style.display = '';
+                var cc = document.getElementById("c4");
+                cc.style.display = '';
+                var cc = document.getElementById("c5");
+                cc.style.display = '';
+                var cc = document.getElementById("c6");
+                cc.style.display = '';
+                var cc = document.getElementById("c7");
+                cc.style.display = '';
+                var cc = document.getElementById("c8");
+                cc.style.display = '';
+                var cc = document.getElementById("c9");
+                cc.style.display = '';
+            }
+            timer1 = setTimeout(moveIt, 25);
+            return el.style;
+        }
+
+        function scoreUp() {
+            //增加分数
+            score++;
+            on = 1;
+        }
+
+        function scoreboard() {
+            document.getElementById("score").innerHTML = "Shots: " + shots + " Score: " + score;
+            return 1;
+        }
+
+        window.onload = function() {
+            var modal = document.getElementById("myModal");
+
+
+            // Get the button that opens the modal
+            var btn = document.getElementById("myBtn");
+            var JSL = document.getElementById("myBtn4");
+            var KJB = document.getElementById("myBtn3")
+            var btn2 = document.getElementById("myBtn2");
+            // Get the <span> element that closes the modal
+            var span = document.getElementsByClassName("close")[0];
+
+            // When the user clicks the button, open the modal 
+            btn.onclick = function() {
+                modal.style.display = "block";
+                ff = 1;
+                document.getElementById("img2").style.display = 'none';
+                document.getElementById("img3").style.display = 'none';
+                console.log(ff)
+                if (parseInt(ff) == 1) el = document.getElementById("img1");
+                if (parseInt(ff) == 2) el = document.getElementById("img2");
+                if (parseInt(ff) == 3) el = document.getElementById("img3");
+                el.onclick = scoreUp; // 点击图片时增加分数
+
+                var x;
+                var y;
+                document.getElementById("range").onclick = function() { //更新总得点击次数
+
+
+                    shots++;
+                    if (shots == 1) {
+                        var cc = document.getElementById("c9");
+                        cc.style.display = 'none'
+                    }
+                    if (shots == 2) {
+                        var cc = document.getElementById("c8");
+                        cc.style.display = 'none'
+                    }
+                    if (shots == 3) {
+                        var cc = document.getElementById("c7");
+                        cc.style.display = 'none'
+                    }
+                    if (shots == 4) {
+                        var cc = document.getElementById("c6");
+                        cc.style.display = 'none'
+                    }
+                    if (shots == 5) {
+                        var cc = document.getElementById("c5");
+                        cc.style.display = 'none'
+                    }
+                    if (shots == 6) {
+                        var cc = document.getElementById("c4");
+                        cc.style.display = 'none'
+                    }
+                    if (shots == 7) {
+                        var cc = document.getElementById("c3");
+                        cc.style.display = 'none'
+                    }
+                    if (shots == 8) {
+                        var cc = document.getElementById("c2");
+                        cc.style.display = 'none'
+                    }
+                    if (shots == 9) {
+                        var cc = document.getElementById("c1");
+                        cc.style.display = 'none'
+                    }
+
+                    x = event.clientX;
+                    y = event.clientY;
+                    var snowball = document.getElementById("theImage" + shots);
+                    snowball.style.display = 'block';
+                    snowball.style.position = 'absolute';
+                    snowball.style.left = parseInt(x) + 'px';
+                    snowball.style.top = parseInt(y) - 100 + 'px';
+                    snowball.style.fontSize = '10%'
+                    var s = scoreboard(); //更新分数板
+                    if (on == 1) {
+                        snowball.id = "theImage-" + shots;
+                        on = 0;
+                    }
+
+                }
+
+                scoreboard(); //初始化游戏
+                el.style.left = '50px';
+                console.log(x);
+                moveIt(x, y);
+            }
+            JSL.onclick = function() {
+                modal.style.display = "block";
+                document.getElementById("img1").style.display = 'none';
+                document.getElementById("img2").style.display = 'none';
+                ff = 3;
+                console.log(ff)
+                if (parseInt(ff) == 1) el = document.getElementById("img1");
+                if (parseInt(ff) == 2) el = document.getElementById("img2");
+                if (parseInt(ff) == 3) el = document.getElementById("img3");
+                el.onclick = scoreUp; // 点击图片时增加分数
+
+                var x;
+                var y;
+                document.getElementById("range").onclick = function() { //更新总得点击次数
+
+
+                    shots++;
+                    if (shots == 1) {
+                        var cc = document.getElementById("c9");
+                        cc.style.display = 'none'
+                    }
+                    if (shots == 2) {
+                        var cc = document.getElementById("c8");
+                        cc.style.display = 'none'
+                    }
+                    if (shots == 3) {
+                        var cc = document.getElementById("c7");
+                        cc.style.display = 'none'
+                    }
+                    if (shots == 4) {
+                        var cc = document.getElementById("c6");
+                        cc.style.display = 'none'
+                    }
+                    if (shots == 5) {
+                        var cc = document.getElementById("c5");
+                        cc.style.display = 'none'
+                    }
+                    if (shots == 6) {
+                        var cc = document.getElementById("c4");
+                        cc.style.display = 'none'
+                    }
+                    if (shots == 7) {
+                        var cc = document.getElementById("c3");
+                        cc.style.display = 'none'
+                    }
+                    if (shots == 8) {
+                        var cc = document.getElementById("c2");
+                        cc.style.display = 'none'
+                    }
+                    if (shots == 9) {
+                        var cc = document.getElementById("c1");
+                        cc.style.display = 'none'
+                    }
+
+                    x = event.clientX;
+                    y = event.clientY;
+                    var snowball = document.getElementById("theImage" + shots);
+                    snowball.style.display = 'block';
+                    snowball.style.position = 'absolute';
+                    snowball.style.left = parseInt(x) + 'px';
+                    snowball.style.top = parseInt(y) - 100 + 'px';
+                    snowball.style.fontSize = '10%'
+                    var s = scoreboard(); //更新分数板
+                    if (on == 1) {
+                        snowball.id = "theImage-" + shots;
+                        on = 0;
+                    }
+
+                }
+
+                scoreboard(); //初始化游戏
+                el.style.left = '50px';
+                console.log(x);
+                moveIt(x, y);
+            }
+            KJB.onclick = function() {
+                modal.style.display = "block";
+
+                ff = 2;
+                console.log(ff)
+                document.getElementById("img1").style.display = 'none';
+                document.getElementById("img3").style.display = 'none';
+                if (parseInt(ff) == 1) el = document.getElementById("img1");
+                if (parseInt(ff) == 2) el = document.getElementById("img2");
+                if (parseInt(ff) == 3) el = document.getElementById("img3");
+                el.onclick = scoreUp; // 点击图片时增加分数
+
+                var x;
+                var y;
+                document.getElementById("range").onclick = function() { //更新总得点击次数
+
+
+                    shots++;
+                    if (shots == 1) {
+                        var cc = document.getElementById("c9");
+                        cc.style.display = 'none'
+                    }
+                    if (shots == 2) {
+                        var cc = document.getElementById("c8");
+                        cc.style.display = 'none'
+                    }
+                    if (shots == 3) {
+                        var cc = document.getElementById("c7");
+                        cc.style.display = 'none'
+                    }
+                    if (shots == 4) {
+                        var cc = document.getElementById("c6");
+                        cc.style.display = 'none'
+                    }
+                    if (shots == 5) {
+                        var cc = document.getElementById("c5");
+                        cc.style.display = 'none'
+                    }
+                    if (shots == 6) {
+                        var cc = document.getElementById("c4");
+                        cc.style.display = 'none'
+                    }
+                    if (shots == 7) {
+                        var cc = document.getElementById("c3");
+                        cc.style.display = 'none'
+                    }
+                    if (shots == 8) {
+                        var cc = document.getElementById("c2");
+                        cc.style.display = 'none'
+                    }
+                    if (shots == 9) {
+                        var cc = document.getElementById("c1");
+                        cc.style.display = 'none'
+                    }
+
+                    x = event.clientX;
+                    y = event.clientY;
+                    var snowball = document.getElementById("theImage" + shots);
+                    snowball.style.display = 'block';
+                    snowball.style.position = 'absolute';
+                    snowball.style.left = parseInt(x) + 'px';
+                    snowball.style.top = parseInt(y) - 100 + 'px';
+                    snowball.style.fontSize = '10%'
+                    var s = scoreboard(); //更新分数板
+                    if (on == 1) {
+                        snowball.id = "theImage-" + shots;
+                        on = 0;
+                    }
+
+                }
+
+                scoreboard(); //初始化游戏
+                el.style.left = '50px';
+                console.log(x);
+                moveIt(x, y);
+            }
+            btn2.onclick = function() {
+                    modal.style.display = "none";
+                }
+                // When the user clicks on <span> (x), close the modal
+            span.onclick = function() {
+                modal.style.display = "none";
+            }
+
+            // When the user clicks anywhere outside of the modal, close it
+
+            //显示分数
+
+
+
+
+        }
+    </script>
+</head>
+
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+    <link href="https://cdn.bootcss.com/hover.css/2.3.1/css/hover-min.css" rel="stylesheet">
+</head>
+<h1 class="animated infinite bounce delay-2s">Choose your FACE!!</h1>
+
+<body>
+
+    <table style="border:8px #FFD382 groove;" cellpadding="10" border='0' class="tb">
+        <td><img id="myBtn" src="cut.png" class="hvr-grow" style="height: 100px;width: 75px;" /></td>
+        <td><img id="myBtn3" src="KJB.png" class="hvr-grow" style="height: 100px;width: 75px;" /></td>
+        <td><img id="myBtn4" src="JSL.png" class="hvr-grow" style="height: 100px;width: 75px;" /></td>
+    </table>
+    <div id="myModal" class="modal">
+        <Input class="myButton" Type="Button" Value="Restart" onClick="window.location.reload();">
+        <button id="myBtn2" value="refresh" onclick="location.reload()" style="display: none">CLOSE</button>
+        <!-- Modal content -->
+        <div class="modal-content">
+
+            <span class="close">&times;</span>
+            <div id="range">
+                <div id="score"> </div>
+                <p>
+                    <img src="shoot.png" class="c" id="c1" style="height: 30px;width: 30px;" />
+                    <img src="shoot.png" class="c" id="c2" style="height: 30px;width: 30px;" />
+                    <img src="shoot.png" class="c" id="c3" style="height: 30px;width: 30px;" />
+                    <img src="shoot.png" class="c" id="c4" style="height: 30px;width: 30px;" />
+                    <img src="shoot.png" class="c" id="c5" style="height: 30px;width: 30px;" />
+                    <img src="shoot.png" class="c" id="c6" style="height: 30px;width: 30px;" />
+                    <img src="shoot.png" class="c" id="c7" style="height: 30px;width: 30px;" />
+                    <img src="shoot.png" class="c" id="c8" style="height: 30px;width: 30px;" />
+                    <img src="shoot.png" class="c" id="c9" style="height: 30px;width: 30px;" />
+                </p>
+                <div id="myModal2" class="modal">
+
+                    <!-- Modal content -->
+                    <div class="modal-dialog" id='m2'>
+                        <h2 class="y">
+                            YOU WIN!!
+                        </h2>
+                        <h2>
+
+                            <Input class="myButton2" Type="Button" Value="Restart" onClick="window.location.reload();" id="su">
+                        </h2>
+                    </div>
+
+                </div>
+                <div id="myModal3" class="modal">
+
+                    <!-- Modal content -->
+                    <div class="modal-dialog" id='m2'>
+                        <h2 class="y">
+                            YOU SUCK!!
+                        </h2>
+                        <h2>
+                            <Input class="myButton2" Type="Button" Value="Restart" onClick="window.location.reload();" id="su">
+                        </h2>
+                    </div>
+
+                </div>
+
+                <img alt="Fire!" id="img1" src="cut.png" style="height: 100px;width: 75px;" />
+                <img alt="Fire!" id="img2" src="KJB.png" style="height: 100px;width: 75px;" />
+                <img alt="Fire!" id="img3" src="JSL.png" style="height: 100px;width: 75px;" />
+                <img class="1" src="shoot.png" id="theImage1" style="display: none;height: 30px;width: 30px;" />
+                <img src="shoot.png" id="theImage2" style="display: none;height: 30px;width: 30px;" />
+                <img src="shoot.png" id="theImage3" style="display: none;height: 30px;width: 30px;" />
+                <img src="shoot.png" id="theImage4" style="display: none;height: 30px;width: 30px;" />
+                <img src="shoot.png" id="theImage5" style="display: none;height: 30px;width: 30px;" />
+                <img src="shoot.png" id="theImage6" style="display: none;height: 30px;width: 30px;" />
+                <img src="shoot.png" id="theImage7" style="display: none;height: 30px;width: 30px;" />
+                <img src="shoot.png" id="theImage8" style="display: none;height: 30px;width: 30px;" />
+                <img src="shoot.png" id="theImage9" style="display: none;height: 30px;width: 30px;" />
+            </div>
+        </div>
+
+    </div>
+    <!--
+      <div id="range"> 
+      <div id="score"> </div>
+      
+      <img alt="Fire!" id="img1" src="cut.png" />
+      <img class="1"  src="shoot.png" id="theImage1"  style="display: none;height: 30px;width: 30px;" />
+      <img  src="shoot.png" id="theImage2"  style="display: none;height: 30px;width: 30px;" />
+      <img  src="shoot.png" id="theImage3"  style="display: none;height: 30px;width: 30px;" />
+      <img  src="shoot.png" id="theImage4"  style="display: none;height: 30px;width: 30px;" />
+      <img  src="shoot.png" id="theImage5"  style="display: none;height: 30px;width: 30px;" />
+      <img  src="shoot.png" id="theImage6"  style="display: none;height: 30px;width: 30px;" />
+      <img  src="shoot.png" id="theImage7"  style="display: none;height: 30px;width: 30px;" />
+      <img  src="shoot.png" id="theImage8"  style="display: none;height: 30px;width: 30px;" />
+      <img  src="shoot.png" id="theImage9"  style="display: none;height: 30px;width: 30px;" />
+		</div>-->
+</body>
+
+</html>
